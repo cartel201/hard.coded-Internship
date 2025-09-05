@@ -1,0 +1,133 @@
+# Internship Project – Task Management API
+
+This project is developed as part of an internship assessment. It is a Django-based RESTful API that manages users and tasks, with background task processing using Celery and Redis. The project is fully tested, documented with Swagger, and follows best practices for API development.
+
+## Project Overview
+
+This project allows:
+
+- User registration and login using JWT authentication
+- Profile view and update
+- Task creation, update, deletion, and listing
+- Owner-only access for task modifications
+- Fetching tasks completed in the last 7 days via a custom query
+- Background tasks using Celery with Redis (e.g., sending welcome emails)
+
+## What I Have Done
+
+During this project, I have:
+
+- **Setup and Configuration**
+  - Created a Django project `internship_project` with proper directory structure
+  - Configured SQLite for development and PostgreSQL for production (Dockerized)
+  - Configured environment variables for database and Celery
+
+- **User Management API**
+  - Implemented user registration endpoint (`/api/users/register/`)
+  - Implemented login endpoint with JWT authentication (`/api/users/login/`)
+  - Developed profile view and update endpoint (`/api/users/profile/`)
+  - Applied proper authentication and permissions
+
+- **Task Management API**
+  - Implemented CRUD operations for tasks (`/api/tasks/`)
+    - Fields: title, description, status, created_at, updated_at
+    - Only the owner can update or delete tasks
+  - Implemented a custom query endpoint (`/api/tasks/completed_recent/`) to fetch tasks completed in the last 7 days
+  - Used Django ORM for all database operations
+
+- **Testing and Documentation**
+  - Wrote unit tests covering key endpoints (users and tasks)
+  - Ensured all tests pass successfully
+  - Integrated Swagger UI for API documentation (`/swagger/`)
+
+- **Background Tasks with Celery**
+  - Configured Redis as a message broker
+  - Integrated Celery for asynchronous tasks
+  - Created a sample Celery task (`add`) and a welcome email task (`send_welcome_email`)
+  - Verified worker and tasks run successfully
+
+- **Dockerization (Optional Bonus)**
+  - Dockerized the project using `docker-compose`
+    - Services: web, worker (Celery), Redis, PostgreSQL
+  - Configured containerized development and background task processing
+  - Verified containerized setup works correctly
+
+## Key Features
+
+- JWT-based authentication and authorization
+- Task ownership enforcement
+- Custom ORM queries for completed tasks
+- Fully tested APIs
+- Swagger documentation
+- Background task processing with Celery
+- Optional Docker-based environment for deployment
+
+## Project Setup
+
+### Prerequisites
+
+- Python 3.11
+- Django 5.2.x
+- Redis (for Celery)
+- PostgreSQL (optional, default is SQLite)
+- Docker & Docker Compose (optional)
+
+### Local Setup
+
+1. Clone the repository:  
+git clone <https://github.com/cartel201/hard.coded-Internship>
+cd internship_project/backend
+
+
+2. Create a virtual environment:  
+python -m venv venv
+
+
+3. Activate the virtual environment:  
+Windows PowerShell
+.\venv\Scripts\Activate.ps1
+
+
+4. Install dependencies:  
+pip install -r requirements.txt
+
+
+5. Apply migrations:  
+python manage.py migrate
+
+
+6. Run the development server:  
+python manage.py runserver
+
+
+7. Access Swagger UI:  
+http://127.0.0.1:8000/swagger/
+
+
+## Running Tests
+
+- Run all unit tests:  
+python manage.py test
+
+- Confirm all tests pass before pushing to GitHub
+
+## Docker Setup (Optional)
+
+1. Build and run containers:  
+docker-compose up --build
+
+
+2. Services:
+- Web: Django development server at `http://localhost:8000/`
+- Worker: Celery worker for asynchronous tasks
+- Redis: Message broker for Celery
+- PostgreSQL: Database (optional)
+3. Ensure background tasks run properly using Celery worker
+
+## Additional Notes
+
+- Task access is strictly owner-based
+- Celery is fully integrated for background tasks
+- APIs are thoroughly tested and documented
+- Ready for deployment in Dockerized environments
+
