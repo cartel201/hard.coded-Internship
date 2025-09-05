@@ -6,8 +6,8 @@ from .models import User
 
 class UsersTests(APITestCase):
     def setUp(self):
-        self.register_url = reverse("register")  # match urls.py name
-        self.login_url = reverse("login")        # match urls.py name
+        self.register_url = reverse("register")  
+        self.login_url = reverse("login")      
         self.user_data = {
             "email": "test@example.com",
             "password": "testpass123",

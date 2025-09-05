@@ -9,7 +9,6 @@ class TaskViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        # Allow only owner’s tasks for LIST
         if self.action == "list":
             return Task.objects.filter(owner=self.request.user)
         return Task.objects.all()  # for retrieve/delete we need all

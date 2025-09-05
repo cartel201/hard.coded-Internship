@@ -13,11 +13,11 @@ class TasksTests(APITestCase):
             email="test@example.com", name="Test User", password="testpass123"
         )
         # login to get JWT token
-        url = reverse("login")  # uses the "name" from urls.py
+        url = reverse("login")
         r = self.client.post(
             url, {"email": "test@example.com", "password": "testpass123"}
         )
-        self.assertEqual(r.status_code, status.HTTP_200_OK, r.content)  # sanity check
+        self.assertEqual(r.status_code, status.HTTP_200_OK, r.content)
         self.token = r.data["access"]
         self.client.credentials(HTTP_AUTHORIZATION=f"Bearer {self.token}")
 
