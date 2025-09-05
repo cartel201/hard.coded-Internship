@@ -109,7 +109,6 @@ http://127.0.0.1:8000/swagger/
 - Run all unit tests:  
 python manage.py test
 
-- Confirm all tests pass before pushing to GitHub
 
 ## Docker Setup (Optional)
 
